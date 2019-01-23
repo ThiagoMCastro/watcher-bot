@@ -39,11 +39,8 @@ fs.readdir('./commands/', (err, files) => {
   });
 
     setTimeout(function(){ 
-    console.log("Almost ready!"); 
-}, 1000);
-  setTimeout(function(){ 
-    console.log("I'm ready! Now logging commands"); 
-}, 1500);
+    console.log("I should be up and running!"); 
+}, 1000)
 });
 bot.on("message", async message => {
   
