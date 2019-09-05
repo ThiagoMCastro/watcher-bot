@@ -24,13 +24,15 @@ fs.readdir('./commands/', (err, files) => {
   if(err) console.log(err);
 
   let jsfile = files.filter(f => f.split(".").pop() === "js")
+  
   if(jsfile.length <= 0){
     console.log("Couldn't find commands")
     return;
   }
-    setTimeout(function(){ 
+  
+  setTimeout(function(){ 
     console.log("Beginning startup"); 
-}, 0);
+  }, 0);
   
   jsfile.forEach((f, i) =>{
     let props = require(`./commands/${f}`)
@@ -39,9 +41,10 @@ fs.readdir('./commands/', (err, files) => {
   });
 
     setTimeout(function(){ 
-    console.log("I should be up and running!"); 
-}, 1000)
+      console.log("I should be up and running!"); 
+    }, 1000)
 });
+
 bot.on("message", async message => {
   
  
