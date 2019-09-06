@@ -46,9 +46,6 @@ fs.readdir('./commands/', (err, files) => {
 });
 
 bot.on("message", async message => {
-  
- 
-
   let prefix = config.prefix;
   let messageArray = message.content.split(" ");
   let command = messageArray[0];
