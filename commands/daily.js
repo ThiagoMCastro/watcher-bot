@@ -9,17 +9,8 @@ var connection = mysql.createConnection({
 module.exports.run = async (bot, message, args) => {
 connection.connect();
 var adr = args.splice(0,100).join(" ")
-connection.query(`SELECT * FROM usuariodiscord WHERE user = '${message.author.username}'`, (err, rows) => {
-  if (err) throw err;
-  let sql;
-  if (rows.length < 1) {
-    sql = `INSERT INTO usuariodiscord (id, user, money) VALUES (NULL, '${message.author.username}', 30)`;
-  }
-  else {
-    let money = rows[0].money;
-    sql = 'UPDATE usuariodiscord SET money = ' + money + 30;
-  }
-  connection.query(sql);
+connection.query(`SELECT * FROM usuariodiscord WHERE user = '${message.author.username}'`, (err, result) => {
+     
 });
  
 connection.end();
