@@ -17,7 +17,10 @@ const config = require("./config.json");
 const client = new Discord.Client();
 bot.commands = new Discord.Collection();
 
-
+bot.on("ready", () => {
+  console.log(`Bot has started, with ${bot.guilds.size} users, in ${bot.channels.size} channels of ${bot.guilds.size} guilds.`); 
+  bot.user.setActivity(`com ${bot.users.size} usuários`);
+});
 
 fs.readdir('./commands/', (err, files) => {
 
@@ -31,7 +34,7 @@ fs.readdir('./commands/', (err, files) => {
   }
   
   setTimeout(function(){ 
-    console.log("Beginning startup"); 
+    console.log("Começando a inciar"); 
   }, 0);
   
   jsfile.forEach((f, i) =>{
@@ -41,7 +44,7 @@ fs.readdir('./commands/', (err, files) => {
   });
 
     setTimeout(function(){ 
-      console.log("I should be up and running!"); 
+      console.log("Peguem a pipoca! O Bot do Watcher está online!"); 
     }, 1000)
 });
 
@@ -57,3 +60,4 @@ bot.on("message", async message => {
 })
 
 bot.login(config.token);
+

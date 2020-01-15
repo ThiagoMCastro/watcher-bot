@@ -1,6 +1,6 @@
 {
- "ownerID": "<Your personal ID here>",
- "token": "<Your super-secret bot token here>",
- "prefix": "!",
- "_comment": "Edit the prefix to whatever you want as prefix, default will be !"
+ "ownerID": "410947907706159110",
+ "token": "NTYAyMzUxNjI4.Xh9s0w.IrF5-bHqPAFW5pMrDjkIBNAxjHg",
+ "prefix": "?",
+ "_comment": "Prefixo"
 }
