@@ -1,28 +1,32 @@
 const Discord = require("discord.js");
 var mysql      = require('mysql');
+var utf8 = require('utf8');
 var connection = mysql.createConnection({
-  host     : 'johnny.heliohost.org',
-  user     : 'areaseca',
+  host     : 's1.cpanel.ecxon.com.br',
+  user     : 'watchert_thiago',
   password : 'Thiagom0@',
-  database : 'areaseca_watcher'
+  database : 'watchert_db'
 });
 module.exports.run = async (bot, message, args) => {
 connection.connect();
 var adr = parseInt(args[0], 10);
 var sql = 'SELECT * FROM filmes WHERE id = ' + mysql.escape(adr);
 connection.query(sql, function (err, result) {
+  if(result.length < 1) {
+    message.channel.send('Não encontrei esse filme :('); }
   if (err) throw err;
   const exampleEmbed = new Discord.RichEmbed()
 	.setColor('#0099ff')
-	.setTitle(result[0].nome)
+	.setTitle(utf8.decode(result[0].nome))
 	.setURL('http://watchertv.xyz/filmes/filme.php?id=' + result[0].id)
-	.setDescription(result[0].descricao)
+	.setDescription(utf8.decode(result[0].descricao))
 	.setThumbnail(result[0].foto)
 	.addBlankField()
 	.setImage(result[0].capa)
 	.setTimestamp()
 	.setFooter('http://www.watchertv.xyz');
-  message.channel.send(exampleEmbed);
+  if (result.length > 0) {
+     message.channel.send(exampleEmbed); }
 });
  
 connection.end();
