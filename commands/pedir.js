@@ -12,7 +12,7 @@ var adr = args.splice(0,100).join(" ")
 connection.query(`INSERT INTO pedidos (id, pedinte, filme) VALUES (NULL, '${message.author.username}',` + mysql.escape(adr) + `)`, function (err) {
   if (err) throw err;
   message.channel.send(`Ok, ${message.author}. Pedido feito! Seu pedido foi ` + (adr));
-  bot.channels.get(`665976048587898920`).send(`${message.author} Fez um pedido, no caso foi:  ` + (adr))
+  bot.channels.get(`667200707861938186`).send(`${message.author} Fez um pedido, no caso foi:  ` + (adr))
 });
  
 connection.end();
