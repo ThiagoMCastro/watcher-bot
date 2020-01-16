@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 var mysql      = require('mysql');
+var utf8 = require('utf8');
 var connection = mysql.createConnection({
   host     : 'johnny.heliohost.org',
   user     : 'areaseca',
@@ -9,7 +10,7 @@ var connection = mysql.createConnection({
 module.exports.run = async (bot, message, args) => {
 connection.connect();
 var filmeid = Math.floor(Math.random() * 68);
-var sql = 'SELECT * FROM `filmes` ORDER BY RAND() LIMIT 1';
+var sql = 'SELECT id,nome,descricao,capa,foto FROM `filmes` ORDER BY RAND() LIMIT 1';
 connection.query(sql, function (err, result) {
   if (err) throw err;
   const exampleEmbed = new Discord.RichEmbed()

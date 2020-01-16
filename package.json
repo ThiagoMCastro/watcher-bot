@@ -11,9 +11,10 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^11.5.1",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "fs": "^0.0.2",
-    "superagent": "^5.1.0",
-    "mysql": "^2.17.1"
+    "superagent": "^5.2.1",
+    "mysql": "^2.17.1",
+    "utf8": "^3.0.0"
   }
 }
