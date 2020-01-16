@@ -66,7 +66,7 @@ const bemvindo = new Discord.RichEmbed()
 	.setURL('https://discord.js.org/')
 	.setAuthor('Bem vindo', `${message.author.AvatarUrl}`, '#')
 	.setThumbnail(`${message.author.avatarUrl}`)
-	.setImage('https://cdn.glitch.com/915fd628-f530-4111-9cb2-707b050abe43%2Fbemvindo.png?v=1579145542099')
+	.setImage('https://cdn.glitch.com/915fd628-f530-4111-9cb2-707b050abe43%2Fbemvindo.png?v=1579145542099');
 
    bot.channels.get(`666779669239955517`).send(bemvindo)
 });
