@@ -22,7 +22,11 @@ bot.on("ready", () => {
   console.log(`Bot has started, with ${bot.guilds.size} users, in ${bot.channels.size} channels of ${bot.guilds.size} guilds.`); 
   bot.user.setActivity(`com ${bot.users.size} usuários`);
 });
-
+bot.on('message', (message) => {
+    if(message.content == 'oi') {
+        message.reply('Olá');
+    }
+});
 fs.readdir('./commands/', (err, files) => {
 
   if(err) console.log(err);
