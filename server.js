@@ -59,6 +59,17 @@ bot.on("message", async message => {
   if(commandfile) commandfile.run(bot,message,args);
   var author = message.author;
 })
+bot.on("guildMemberAdd" ,(message, member) => {
+const bemvindo = new Discord.RichEmbed()
+	.setColor('#0099ff')
+	.setTitle('Olá!')
+	.setURL('https://discord.js.org/')
+	.setAuthor('Bem vindo', `${message.author.AvatarUrl}`, '#')
+	.setThumbnail(`${message.author.avatarUrl}`)
+	.setImage('https://cdn.glitch.com/915fd628-f530-4111-9cb2-707b050abe43%2Fbemvindo.png?v=1579145542099')
+
+   bot.channels.get(`666779669239955517`).send(bemvindo)
+});
 
 bot.login(config.token);
 
