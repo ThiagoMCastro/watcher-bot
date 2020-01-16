@@ -12,9 +12,9 @@ connection.connect();
 var adr = parseInt(args[0], 10);
 var sql = 'SELECT * FROM filmes WHERE id = ' + mysql.escape(adr);
 connection.query(sql, function (err, result) {
-  if(result.length < 1) {
-    message.channel.send('Não encontrei esse filme :('); }
-  if (err) throw err;
+  if (err){
+    message.channel.send('Nao achei');
+  }
   const exampleEmbed = new Discord.RichEmbed()
 	.setColor('#0099ff')
 	.setTitle(utf8.decode(result[0].nome))
@@ -25,8 +25,7 @@ connection.query(sql, function (err, result) {
 	.setImage(result[0].capa)
 	.setTimestamp()
 	.setFooter('http://www.watchertv.xyz');
-  if (result.length > 0) {
-     message.channel.send(exampleEmbed); }
+  message.channel.send(exampleEmbed);
 });
  
 connection.end();
