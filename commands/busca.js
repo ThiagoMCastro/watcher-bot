@@ -9,8 +9,8 @@ var connection = mysql.createConnection({
 });
 module.exports.run = async (bot, message, args) => {
 connection.connect();
-var adr = args.join;
-var sql = 'SELECT * FROM filmes WHERE nome LIKE ' + (adr);
+var adr = parseInt(args[0], 10);
+var sql = 'SELECT * FROM filmes WHERE id = ' + mysql.escape(adr);
 connection.query(sql, function (err, result) {
   if (err) throw err;
   const exampleEmbed = new Discord.RichEmbed()
