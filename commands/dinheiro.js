@@ -7,11 +7,11 @@ var connection = mysql.createConnection({
   password : 'Thiagom0@',
   database : 'watchert_db'
 });
-module.exports.run = async (bot, message) => {
+module.exports.run = async (bot, message, args) => {
 connection.connect();
-connection.query('SELECT * FROM Usuario WHERE Usuario = ? and Contra= ?',  [UsuarioReg,ContraReg]
-,function(err,rows){
-    if(err) {
+var sql = 'SELECT * FROM discord WHERE idd = ' + `${message.author.id}`;
+connection.query(sql, function (err, rows) {
+  if(err) {
         conDB.end();
         return console.log(err);
     }
@@ -19,17 +19,20 @@ connection.query('SELECT * FROM Usuario WHERE Usuario = ? and Contra= ?',  [Usua
     if (!rows.length)
     {
         connection.query('INSERT INTO Usuario SET ?',reg,function(err, results){
-            conDB.end();
-            return res.send("Usuario: "+req.body.Usuario+" y Contraseña: "+
-                req.body.Contra + "REGISTRADOS");
+            connection.end();
+            me
         });
     }
     else
     {
-        connection.end();
+        conDB.end();
         return res.send("Este usuario ya existe");
     }
+});
+ 
+connection.end();
 }
+
 module.exports.help = {
   name: "saldo"
 }
