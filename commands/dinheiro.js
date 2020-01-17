@@ -16,9 +16,7 @@ module.exports.run = async (bot, message, args) => {
     }
     if (!rows.length)
     {
-            connection.query(`INSERT INTO discord (idd, usuario, dinheiro) VALUES ('${message.author.id},' '${message.author.username}', '6')`,){
-            return message.channel.send("Como você não tinha nenhuma conta, criei uma pra você com 6 créditos.");
-            }); 
+            return message.channel.send("Como você não tinha nenhuma conta, criei uma pra você com 6 créditos."); 
     }
     else
     {
