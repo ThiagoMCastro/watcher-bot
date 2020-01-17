@@ -12,11 +12,12 @@ module.exports.run = async (bot, message, args) => {
   connection.query(`SELECT * FROM discord WHERE idd = ${message.author.id}`, function(err, rows) {
     if (err) throw err;
     let sql;
-    if(rows.length < 1) {
-      
+    if(!rows.length) {
+      sql = `INSERT INTO discord ( idd, usuario, dinheiro) VALUES ('${message.author.id}', '${message.author.username}', '6')`;
       message.channel.send('Não tem conta. Vou criar uma! :)');
     }
-    if(rows.length > 0) {
+    else{
+      sql = `SELECT FROM discord WHERE idd = ${message.author.id}`;
       message.channel.send('Você tem exatamente algum saldo fodido seu merda me mama fdp do krl seu lixo fodido resto de placenta do krl');
     }
   });
