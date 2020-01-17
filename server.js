@@ -16,19 +16,31 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 const config = require("./config.json");
 const client = new Discord.Client();
+var mysql = require("mysql");
+var utf8 = require("utf8");
+var connection = mysql.createConnection({
+  host: "s1.cpanel.ecxon.com.br",
+  user: "watchert_thiago",
+  password: "Thiagom0@",
+  database: "watchert_db"
+});
 bot.commands = new Discord.Collection();
 
 bot.on("ready", () => {
   console.log(`Bot has started, with ${bot.guilds.size} users, in ${bot.channels.size} channels of ${bot.guilds.size} guilds.`); 
   bot.user.setActivity(`com ${bot.users.size} usuários`);
 });
+
 bot.on('message', (message) => {
-    if(message.content == 'oi') {
-        message.reply('Olá');
-    }
+    connection.query(`SELECT * FROM discord WHERE idd = '${message.author.id}'`, (err, result) => {
+      if(err) throw err;
+      console.log(result);
+    });
 });
 function gerarxp() {
-    return Math.Random()
+    let min = 10;
+    let max = 30;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 fs.readdir('./commands/', (err, files) => {
 

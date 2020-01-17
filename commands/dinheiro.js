@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
         );
       } else {
         connection.query(
-          `SELECT FROM discord WHERE idd = ${message.author.id}`,
+          `SELECT * FROM discord WHERE idd = ${message.author.id}`,
           function(err, result) {
             return message.channel.send("Voce tem R$" + result[0].dinheiro);
           }
