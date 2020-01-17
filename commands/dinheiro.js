@@ -9,15 +9,27 @@ var connection = mysql.createConnection({
 });
 module.exports.run = async (bot, message) => {
 connection.connect();
-var sql = "INSERT INTO `discord` (`idd`, `usuario`, `dinheiro`) VALUES ('"+ `${message.author.id}` + "','" + `${message.author.name}` + "', '6')";
-connection.query(sql, function (err, result) {
-  if (err) throw err;
-  message.channel.send(`${message.author.id}`);
-});
- 
-connection.end();
-}
+connection.query('SELECT * FROM Usuario WHERE Usuario = ? and Contra= ?',  [UsuarioReg,ContraReg]
+,function(err,rows){
+    if(err) {
+        conDB.end();
+        return console.log(err);
+    }
 
+    if (!rows.length)
+    {
+        connection.query('INSERT INTO Usuario SET ?',reg,function(err, results){
+            conDB.end();
+            return res.send("Usuario: "+req.body.Usuario+" y Contraseña: "+
+                req.body.Contra + "REGISTRADOS");
+        });
+    }
+    else
+    {
+        connection.end();
+        return res.send("Este usuario ya existe");
+    }
+}
 module.exports.help = {
   name: "saldo"
 }
