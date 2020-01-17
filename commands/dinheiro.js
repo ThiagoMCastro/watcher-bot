@@ -8,16 +8,16 @@ var connection = mysql.createConnection({
   database: "watchert_db"
 });
 module.exports.run = async (bot, message, args) => {
-  let mencionado = message.mentions.users.first || message.guilds.member.get[]
+  let target = message.mentions.users.first.id || message.author.id;
   connection.connect;
   connection.query(
-    `SELECT * FROM discord WHERE idd = ${message.author.id}`,
-    function(err, rows) {
-      if (err) {
-        connection.end();
-        return console.log(err);
-      }
-      message.channel.send('Seu saldo é de R$' + rows[0].dinheiro + ',00 reais');
+    `SELECT * FROM discord WHERE idd = '${target}'`, function(err, rows) {
+      if (err) throw (err);
+      if(!rows[0]) return message.channel.send('Sem saldo.');
+      
+      let creditos = rows[0].dinheiro;
+      
+      message.channel.send('Saldo de R$' + creditos + ',00');
     }
   );
 
