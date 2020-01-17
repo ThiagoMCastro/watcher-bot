@@ -27,6 +27,9 @@ bot.on('message', (message) => {
         message.reply('Olá');
     }
 });
+function gerarxp() {
+    return Math.Random()
+}
 fs.readdir('./commands/', (err, files) => {
 
   if(err) console.log(err);
