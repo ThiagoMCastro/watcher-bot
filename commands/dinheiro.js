@@ -7,19 +7,17 @@ var connection = mysql.createConnection({
   password : 'Thiagom0@',
   database : 'watchert_db'
 });
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message) => {
 connection.connect();
-var adr = parseInt(args[0], 10);
-var sql = `SELECT * FROM filmes WHERE usuarios = ${message.author.username}`;
+var sql = `SELECT * FROM discord WHERE id = ${message.author.id}`;
 connection.query(sql, function (err, result) {
   if (err) throw err;
   const exampleEmbed = new Discord.RichEmbed()
-	.setColor('#0099ff')
-	.setTitle(utf8.decode(result[0].nome))
-	.setURL('http://watchertv.xyz/filmes/filme.php?id=' + result[0].id)
-	.setDescription('Você tem exatamente R$' + result[0].dinheiro)
+	.setColor('#00ff3c')
+	.setTitle('Seu saldo bancário')
+	.setDescription('Você tem exatamente R$')
 	.setThumbnail(`${message.author.avatarUrl}`)
-  message.channel.send(exampleEmbed);
+  message.channel.send(`${message.author.id}`);
 });
  
 connection.end();
