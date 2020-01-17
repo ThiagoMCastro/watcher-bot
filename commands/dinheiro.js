@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
   database: "watchert_db"
 });
 module.exports.run = async (bot, message, args) => {
-  let target = message.mentions.users.first.id || message.author.id;
+  let target = message.mentions.users.first().id || message.author.id;
   connection.connect;
   connection.query(
     `SELECT * FROM discord WHERE idd = '${target}'`, function(err, rows) {
