@@ -9,14 +9,9 @@ var connection = mysql.createConnection({
 });
 module.exports.run = async (bot, message) => {
 connection.connect();
-var sql = `SELECT * FROM discord WHERE id = ${message.author.id}`;
+var sql = "INSERT INTO `discord` (`idd`, `usuario`, `dinheiro`) VALUES ('"+ `${message.author.id}` + "','" + `${message.author.name}` + "', '6')";
 connection.query(sql, function (err, result) {
   if (err) throw err;
-  const exampleEmbed = new Discord.RichEmbed()
-	.setColor('#00ff3c')
-	.setTitle('Seu saldo bancário')
-	.setDescription('Você tem exatamente R$')
-	.setThumbnail(`${message.author.avatarUrl}`)
   message.channel.send(`${message.author.id}`);
 });
  
