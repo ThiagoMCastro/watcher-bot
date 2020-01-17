@@ -9,13 +9,18 @@ var connection = mysql.createConnection({
 });
 module.exports.run = async (bot, message, args) => {
   connection.connect;
-  var sql = `SELECT * FROM filmes WHERE id = ${message.author.id}`;
+  var sql = `SELECT * FROM discord WHERE idd = ${message.author.id}`;
   connection.query(sql, function(err, rows) {
     if (err) throw err;
     
     if(!rows.length) {
-      
+      message.channel.send('Não tem conta');
     }
+    if(rows.length > 0) {
+      var sql = `SELECT FROM discord WHERE idd = ${message.author.id}`;
+      connection.query(sql, function(err, results) {
+      message.channel.send('Você tem exatamente R$' + results[0].dinheiro);
+      }); }
   });
 
   connection.end();
