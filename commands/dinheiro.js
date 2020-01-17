@@ -10,15 +10,19 @@ var connection = mysql.createConnection({
 module.exports.run = async (bot, message, args) => {
   connection.connect;
   connection.query(`SELECT * FROM discord WHERE idd = ${message.author.id}`, function(err, rows) {
-    if (err) throw err;
-    let sql;
-    if(!rows.length) {
-      sql = `INSERT INTO discord ( idd, usuario, dinheiro) VALUES ('${message.author.id}', '${message.author.username}', '6')`;
-      message.channel.send('Não tem conta. Vou criar uma! :)');
+    if(err) {
+        connection.end();
+        return console.log(err);
     }
-    else{
-      sql = `SELECT FROM discord WHERE idd = ${message.author.id}`;
-      message.channel.send('Você tem exatamente algum saldo fodido seu merda me mama fdp do krl seu lixo fodido resto de placenta do krl');
+    if (!rows.length)
+    {
+            connection.query(`INSERT INTO discord (idd, usuario, dinheiro) VALUES ('${message.author.id}', '${message.author.username}', '6')`,function(err, result){
+            return message.channel.send("Como você não tinha nenhuma conta, criei uma pra você com 6 créditos.");
+            }); 
+    }
+    else
+    {
+        return message.channel.send("Voce ja tem uma conta.");
     }
   });
 
