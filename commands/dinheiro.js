@@ -17,13 +17,7 @@ module.exports.run = async (bot, message, args) => {
       }
 
       if (!rows.length) {
-        connection.query(
-          "INSERT INTO `discord` (`idd`, `usuario`, `dinheiro`) VALUES ('" +
-            `${message.author.id}` +
-            "','" +
-            `${message.author.username}` +
-            "', '6')",
-          function(err, results) {
+        connection.query(`INSERT INTO (idd, usuario, dinheiro) VALUES ('${message.author.id}', '${message.author.username}', '6')`, function(err, results) {
             message.channel.send(
               "Você nao tinha uma conta, e criei uma pra você. Tens 6 reais!"
             );
