@@ -8,31 +8,15 @@ var connection = mysql.createConnection({
   database: "watchert_db"
 });
 module.exports.run = async (bot, message, args) => {
-  connection.connect();
-  connection.query(
-    `SELECT * FROM discord WHERE idd = ${message.author.id}`,
-    function(err, rows) {
-      if (err) {
-        return console.log(err);
-      }
-
-      if (!rows.length) {
-        connection.query(`INSERT INTO (idd, usuario, dinheiro) VALUES ('${message.author.id}', '${message.author.username}', '6')`, function(err, results) {
-            message.channel.send(
-              "Você nao tinha uma conta, e criei uma pra você. Tens 6 reais!"
-            );
-          }
-        );
-      } else {
-        connection.query(
-          "SELECT FROM discord WHERE idd = " + `${message.author.id}`,
-          function(err, results) {
-            message.channel.send("Ja tem uma conta :)");
-          }
-        );
-      }
+  connection.connect;
+  var sql = `SELECT * FROM filmes WHERE id = ${message.author.id}`;
+  connection.query(sql, function(err, rows) {
+    if (err) throw err;
+    
+    if(!rows.length) {
+      
     }
-  );
+  });
 
   connection.end();
 };
