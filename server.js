@@ -19,10 +19,10 @@ const client = new Discord.Client();
 var mysql = require("mysql");
 var utf8 = require("utf8");
 var connection = mysql.createConnection({
-  host: "s1.cpanel.ecxon.com.br",
-  user: "watchert_thiago",
-  password: "Thiagom0@",
-  database: "watchert_db"
+  host: "",
+  user: "",
+  password: "",
+  database: ""
 });
 bot.commands = new Discord.Collection();
 
